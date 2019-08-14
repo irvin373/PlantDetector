@@ -55,6 +55,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import org.tensorflow.lite.examples.classification.env.ImageUtils;
 import org.tensorflow.lite.examples.classification.env.Logger;
+import org.tensorflow.lite.examples.classification.plants.PlantView;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Model;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Recognition;
@@ -524,17 +525,17 @@ public abstract class CameraActivity extends AppCompatActivity
       if (recognition != null) {
         if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
         if (recognition.getConfidence() != null){
-          if( recognition.getTitle().equals("studio couch")) {
+          if( recognition.getTitle().equals("studio couch") ||
+                recognition.getTitle().equals("notebook")) {
             Toast toast = Toast.makeText(getBaseContext(),
-                    recognition.getTitle() + " " +(100 * recognition.getConfidence()),
-                    Toast.LENGTH_SHORT);
+          recognition.getTitle() + " " +(100 * recognition.getConfidence()), Toast.LENGTH_SHORT);
             toast.show();
-            Intent myIntent = new Intent(getBaseContext(), MainActivity.class);
+            Intent myIntent = new Intent(getBaseContext(), PlantView.class);
             myIntent.putExtra("label", recognition.getTitle()); //Optional parameters
             startActivity(myIntent);
           }
           recognitionValueTextView.setText(
-                  String.format("%.2f", (100 * recognition.getConfidence())) + "%");
+            String.format("%.2f", (100 * recognition.getConfidence())) + "%");
         }
       }
 
