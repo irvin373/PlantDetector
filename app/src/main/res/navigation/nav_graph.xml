@@ -2,4 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/plantList">
+    <fragment
+        android:id="@+id/plantList"
+        android:name="org.tensorflow.lite.examples.classification.plants.plantList"
+        android:label="fragment_plant_list"
+        tools:layout="@layout/fragment_plant_list" >
+        <action
+            android:id="@+id/action_plantList_to_plantDetail"
+            app:destination="@id/plantDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantDetail"
+        android:name="org.tensorflow.lite.examples.classification.plants.PlantDetail"
+        android:label="fragment_plant_detail"
+        tools:layout="@layout/fragment_plant_detail" />
+</navigation>
