@@ -15,7 +15,6 @@ import java.io.InputStream
 import java.io.InputStreamReader
 
 import android.widget.ArrayAdapter
-import android.widget.BaseAdapter
 import android.widget.ListView
 
 class Attraction(private  val label: String) {
@@ -27,6 +26,9 @@ class plantList : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+
+
         val view: View = inflater.inflate(R.layout.fragment_plant_list, container, false)
         val lv = view.findViewById<ListView>(R.id.recipe_list_view)
         val prodAdapter = ArrayAdapter<Attraction>(context, R.layout.plant_list_item, array)

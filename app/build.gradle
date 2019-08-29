@@ -38,6 +38,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
     // Build off of nightly TensorFlow Lite
 //    implementation 'org.tensorflow:tensorflow-lite:1.12.0'
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
