@@ -53,12 +53,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.Locale;
+
 import org.tensorflow.lite.examples.classification.env.ImageUtils;
 import org.tensorflow.lite.examples.classification.env.Logger;
 import org.tensorflow.lite.examples.classification.plants.PlantView;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Device;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Model;
 import org.tensorflow.lite.examples.classification.tflite.Classifier.Recognition;
+import android.speech.tts.TextToSpeech;
 
 public abstract class CameraActivity extends AppCompatActivity
     implements OnImageAvailableListener,
@@ -104,12 +107,22 @@ public abstract class CameraActivity extends AppCompatActivity
   private Model model = Model.QUANTIZED;
   private Device device = Device.CPU;
   private int numThreads = -1;
+  private TextToSpeech ttobj;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+    ttobj=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+      @Override
+      public void onInit(int status) {
+      }
+    });
+
+    ttobj.setLanguage(Locale.US);
+
 
     setContentView(R.layout.activity_camera);
     Toolbar toolbar = findViewById(R.id.toolbar);
@@ -315,8 +328,13 @@ public abstract class CameraActivity extends AppCompatActivity
               isProcessingFrame = false;
             }
           };
+      Handler handler = new Handler();
+      handler.postDelayed(new Runnable() {
+        public void run() {
+          processImage();
+        }
+      }, 2000);
 
-      processImage();
     } catch (final Exception e) {
       LOGGER.e(e, "Exception!");
       Trace.endSection();
@@ -525,15 +543,16 @@ public abstract class CameraActivity extends AppCompatActivity
       if (recognition != null) {
         if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
         if (recognition.getConfidence() != null){
-          if( recognition.getTitle().equals("studio couch") ||
-                recognition.getTitle().equals("notebook")) {
-            Toast toast = Toast.makeText(getBaseContext(),
-          recognition.getTitle() + " " +(100 * recognition.getConfidence()), Toast.LENGTH_SHORT);
-            toast.show();
-            Intent myIntent = new Intent(getBaseContext(), PlantView.class);
-            myIntent.putExtra("label", recognition.getTitle()); //Optional parameters
-            startActivity(myIntent);
-          }
+          ttobj.speak(recognition.getTitle(), TextToSpeech.QUEUE_FLUSH, null);
+//          if( recognition.getTitle().equals("studio couch") ||
+//                recognition.getTitle().equals("notebook")) {
+//            Toast toast = Toast.makeText(getBaseContext(),
+//          recognition.getTitle() + " " +(100 * recognition.getConfidence()), Toast.LENGTH_SHORT);
+//            toast.show();
+//            Intent myIntent = new Intent(getBaseContext(), PlantView.class);
+//            myIntent.putExtra("label", recognition.getTitle()); //Optional parameters
+//            startActivity(myIntent);
+//          }
           recognitionValueTextView.setText(
             String.format("%.2f", (100 * recognition.getConfidence())) + "%");
         }

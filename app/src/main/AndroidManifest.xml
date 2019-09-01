@@ -19,15 +19,16 @@
             android:name=".plants.PlantView"
             android:label="@string/title_activity_plant_view"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ClassifierActivity"
+            android:label="@string/activity_name_classification"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ClassifierActivity"
-            android:label="@string/activity_name_classification"
-            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
