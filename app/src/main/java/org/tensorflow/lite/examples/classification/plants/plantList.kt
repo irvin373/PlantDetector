@@ -1,63 +1,46 @@
 package org.tensorflow.lite.examples.classification.plants
 
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import org.json.JSONObject
 import org.tensorflow.lite.examples.classification.R
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
 
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_plant_list.*
 
 class Attraction(private  val label: String) {
 }
 
 class plantList : Fragment() {
-//    var array = arrayOf("Melbourne", "Vienna", "Vancouver", "Toronto", "Calgary", "Adelaide", "Perth", "Auckland", "Helsinki", "Hamburg", "Munich", "New York", "Sydney", "Paris", "Cape Town", "Barcelona", "London", "Bangkok")
-    var array = arrayListOf<Attraction>(Attraction("send"), Attraction("send2"))
+    val plants: ArrayList<Plant> = ArrayList()
 
+    private lateinit var adapter: PlantsAdapter
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-
-
         val view: View = inflater.inflate(R.layout.fragment_plant_list, container, false)
-        val lv = view.findViewById<ListView>(R.id.recipe_list_view)
-        val prodAdapter = ArrayAdapter<Attraction>(context, R.layout.plant_list_item, array)
-        lv.adapter = prodAdapter
+//        recyclerview.apply {
+//            layoutManager = LinearLayoutManager(activity)
+//            adapter = PlantsAdapter(plants)
+//        }
         return view
-//        return inflater.inflate(R.layout.fragment_plant_list, container, false)
     }
 
-    fun fillData () {
-        try {
-            val jsonfile: String = context!!.assets.open("plants.json").bufferedReader().use {it.readText()}
-            val jsonObject = JSONObject(jsonfile)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        fillPlants()
+        adapter = PlantsAdapter(plants)
+        plantlistView.adapter = adapter
+    }
 
-
-            val inputStream:InputStream = context!!.assets.open("[\n  {\n    \"name\": \"Eucalipto\",\n    \"plant\": \"send it\"\n  },\n  {\n    \"name\": \"SAbila\",\n    \"plant\": \"send it\"\n  },\n  {\n    \"name\": \"Diente de leon\",\n    \"plant\": \"send it\"\n  }\n]")
-            val inputStreamReader = InputStreamReader(inputStream)
-            val sb = StringBuilder()
-            var line: String?
-            val br = BufferedReader(inputStreamReader)
-            line = br.readLine()
-            while (br.readLine() != null) {
-                sb.append(line)
-                line = br.readLine()
-            }
-            br.close()
-            Log.d("TAG", sb.toString())
-        } catch (e:Exception){
-            Log.d("TAG", e.toString())
-        }
-
+    fun fillPlants() {
+        plants.add(Plant("Plnata 1", "Cardiaca", "no se ricardo"))
+        plants.add(Plant("Planta 2", "Cardiaca", "no lo se ricardo"))
     }
 }

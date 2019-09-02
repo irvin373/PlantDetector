@@ -1,10 +1,7 @@
 package org.tensorflow.lite.examples.classification.plants
 
-class Plant {
-    private val name: String
-    private val group: String
-    constructor(name: String, group: String) {
-        this.name = name
-        this.group = group
-    }
+class Plant(nameParam: String, groupParam: String, descriptionParam: String) {
+    val name: String = nameParam
+    val group: String = groupParam
+    val description: String = descriptionParam
 }
