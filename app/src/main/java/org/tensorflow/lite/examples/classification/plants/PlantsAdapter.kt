@@ -1,6 +1,5 @@
 package org.tensorflow.lite.examples.classification.plants
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,4 +28,8 @@ class PlantsAdapter(val items : ArrayList<Plant>)
     }
 }
 
-class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+class ViewHolder (containerView: View) : RecyclerView.ViewHolder(containerView) {
+    val title = containerView.title
+    val group = containerView.group
+    val description = containerView.description
+}
