@@ -40,7 +40,7 @@ class plantList : Fragment() {
     }
 
     fun fillPlants() {
-        plants.add(Plant("Plnata 1", "Cardiaca", "no se ricardo"))
-        plants.add(Plant("Planta 2", "Cardiaca", "no lo se ricardo"))
+        plants.add(Plant("Plnata 1", "Cardiaca", "its a description to display more and more to send a file with more la la la"))
+        plants.add(Plant("Planta 2", "Cardiaca", "its a description to display more and more to send a file with more la la la"))
     }
 }
