@@ -1,11 +1,14 @@
 package org.tensorflow.lite.examples.classification.plants
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.plant_list_item.view.*
+import org.tensorflow.lite.examples.classification.ClassifierActivity
 import org.tensorflow.lite.examples.classification.R
 
 class PlantsAdapter(val items : ArrayList<Plant>)
@@ -14,6 +17,9 @@ class PlantsAdapter(val items : ArrayList<Plant>)
         holder.itemView.title.text = items[position].name
         holder.itemView.group.text = items[position].group
         holder.itemView.description.text = items[position].description
+        holder.itemView.card_view.setOnClickListener{view ->
+            Toast.makeText(view.context, "send a file", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
