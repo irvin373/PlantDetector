@@ -38,7 +38,8 @@ class plantList : Fragment() {
         val size: Int = platsJson.length() -1
         for (index in 0..size) {
             val obj = JSONObject(platsJson[index].toString())
-            val plant = Plant(obj.optString("name"), obj.optString("group"), obj.optString("description"))
+            val plant = Plant(obj.optString("name"), obj.optString("group"),
+                    obj.optString("description"), obj.optString("img"))
             plants.add(plant)
         }
     }
