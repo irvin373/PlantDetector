@@ -1,14 +1,17 @@
 [
-  {
-    "name": "Eucalipto",
-    "plant": "send it"
-  },
-  {
-    "name": "SAbila",
-    "plant": "send it"
-  },
-  {
-    "name": "Diente de leon",
-    "plant": "send it"
-  }
+    {
+      "name": "Eucalipto",
+      "group": "send it",
+      "description": "its a description to display more and more to send a file with more la la la"
+    },
+    {
+      "name": "SAbila",
+      "group": "send it",
+      "description": "its a description to display more and more to send a file with more la la la"
+    },
+    {
+      "name": "Diente de leon",
+      "group": "send it",
+      "description": "its a description to display more and more to send a file with more la la la"
+    }
 ]
