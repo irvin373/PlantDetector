@@ -31,7 +31,7 @@ class AttractionsAdapter(items: ArrayList<Plant>, ctx: Context) :
 
             viewHolder = AttractionItemViewHolder()
             viewHolder.title = view!!.findViewById<View>(R.id.title) as TextView
-            viewHolder.description = view.findViewById<View>(R.id.description) as TextView
+//            viewHolder.description = view.findViewById<View>(R.id.description) as TextView
             viewHolder.group = view.findViewById<View>(R.id.group) as TextView
             //shows how to apply styles to views of item for specific items
 //            if (i == 3)

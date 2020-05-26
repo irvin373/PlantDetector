@@ -18,7 +18,7 @@ class PlantsAdapter(val items : ArrayList<Plant>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.title.text = items[position].name
         holder.itemView.group.text = items[position].group
-        holder.itemView.description.text = items[position].description
+//        holder.itemView.description.text = items[position].description
 
         val assetsBitmap: Bitmap? = getBitmapFromAssets(items[position].img, holder.itemView.context)
         holder.itemView.plant_item_image.setImageBitmap(assetsBitmap)
@@ -51,6 +51,6 @@ class PlantsAdapter(val items : ArrayList<Plant>)
 class ViewHolder (containerView: View) : RecyclerView.ViewHolder(containerView) {
     val title = containerView.title
     val group = containerView.group
-    val description = containerView.description
+//    val description = containerView.description
     val img = containerView.plant_item_image
 }
