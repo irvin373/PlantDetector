@@ -5,18 +5,29 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 
 import kotlinx.android.synthetic.main.activity_plant_view.*
 import org.tensorflow.lite.examples.classification.ClassifierActivity
 import org.tensorflow.lite.examples.classification.R
 
 class PlantView : AppCompatActivity() {
+    private fun setupActionBar(navController: NavController,
+                               appBarConfig : AppBarConfiguration) {
+        setupActionBarWithNavController(navController, appBarConfig)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plant_view)
         setSupportActionBar(toolbar)
-
         val intent: Intent = getIntent()
         val value = intent.getStringExtra("label")
         if (!value.isNullOrEmpty()) {

@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import org.tensorflow.lite.examples.classification.R
 
-class AttractionsAdapter(items: ArrayList<Plant>, ctx: Context) :
+class PlantAdapter(items: ArrayList<Plant>, ctx: Context) :
         ArrayAdapter<Plant>(ctx, R.layout.plant_list_item, items) {
 
     //view holder is used to prevent findViewById calls

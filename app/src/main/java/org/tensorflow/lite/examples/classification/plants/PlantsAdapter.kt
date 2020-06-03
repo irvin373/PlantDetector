@@ -3,17 +3,16 @@ package org.tensorflow.lite.examples.classification.plants
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.plant_list_item.view.*
 import org.tensorflow.lite.examples.classification.R
 import java.io.IOException
 
-class PlantsAdapter(val items : ArrayList<Plant>)
+class PlantsAdapter(private val items : ArrayList<Plant>)
     : RecyclerView.Adapter<ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.title.text = items[position].name
@@ -23,7 +22,9 @@ class PlantsAdapter(val items : ArrayList<Plant>)
         val assetsBitmap: Bitmap? = getBitmapFromAssets(items[position].img, holder.itemView.context)
         holder.itemView.plant_item_image.setImageBitmap(assetsBitmap)
         holder.itemView.card_view.setOnClickListener{view ->
-            Toast.makeText(view.context, "send a file", Toast.LENGTH_SHORT).show()
+            val action = plantListDirections.actionPlantListToPlantDetail(position)
+            view.findNavController().navigate(action)
+            view.findNavController().navigate(action)
         }
     }
 

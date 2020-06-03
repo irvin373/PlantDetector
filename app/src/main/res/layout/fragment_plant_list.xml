@@ -12,5 +12,4 @@
         tools:context=".plants.plantList"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:layout_width="match_parent"/>
-
 </FrameLayout>

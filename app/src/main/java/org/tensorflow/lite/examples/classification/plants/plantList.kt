@@ -33,7 +33,8 @@ class plantList : Fragment() {
         plantlistView.adapter = adapter
     }
 
-    fun fillPlants() {
+    private fun fillPlants() {
+        plantListDirections.actionPlantListToPlantDetail()
         var platsJson = JSONArray(readJSONFromAsset())
         val size: Int = platsJson.length() -1
         for (index in 0..size) {
@@ -44,10 +45,10 @@ class plantList : Fragment() {
         }
     }
 
-    fun readJSONFromAsset(): String? {
+    private fun readJSONFromAsset(): String? {
         var json: String? = null
         try {
-            val inputStream: InputStream = context!!.assets.open("plants.json")
+            val inputStream: InputStream = requireContext().assets.open("plants.json")
             json = inputStream.bufferedReader().use{it.readText()}
         } catch (ex: Exception) {
             ex.printStackTrace()
